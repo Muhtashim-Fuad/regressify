@@ -35,9 +35,9 @@ class TableGroup extends StatelessWidget {
           TableRow(
             decoration: const BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
             children: [
-            Text(data.x.toString(),
+            SelectableText(data.x.toString(),
                 textAlign: TextAlign.center),
-            Text(data.y.toString(),
+            SelectableText(data.y.toString(),
                 textAlign: TextAlign.center),
             InkWell(
               onTap: () => { Provider.of<RegressionData>(context, listen: false).removeData(data) },

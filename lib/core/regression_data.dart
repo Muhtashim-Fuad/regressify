@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:regressify/core/regression_calculator.dart';
 
 class RegressionData extends ChangeNotifier {
-  final List<CoordinateData> _coordinateList = [
-    CoordinateData(x: -35, y: -36),
-    CoordinateData(x: -30, y: -28),
-    CoordinateData(x: -25, y: -24),
-    CoordinateData(x: -20, y: -18),
-    CoordinateData(x: 0, y: 2),
-    CoordinateData(x: 20, y: 22),
-    CoordinateData(x: 25, y: 27),
-    CoordinateData(x: 30, y: 32),
-    CoordinateData(x: 35, y: 37),
+  RegressionData() {
+    _coordinateList = _sampleList.toList();
+    notifyListeners();
+  }
+
+  List<CoordinateData> _coordinateList = [];
+
+  final List<CoordinateData> _sampleList =
+  [
+    CoordinateData(x: -30, y: -5),
+    CoordinateData(x: -20, y: 0),
+    CoordinateData(x: -10, y: 3),
+    CoordinateData(x: 0, y: 5),
+    CoordinateData(x: 10, y: 8),
   ];
 
   bool _recalculatedResult = false;
@@ -49,6 +53,11 @@ class RegressionData extends ChangeNotifier {
   void clearData() {
     _coordinateList.clear();
     _recalculatedResult = false;
+    notifyListeners();
+  }
+
+  void reloadData() {
+    _coordinateList = _sampleList.toList();
     notifyListeners();
   }
 }

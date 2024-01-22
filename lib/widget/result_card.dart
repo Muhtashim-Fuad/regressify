@@ -5,7 +5,7 @@ import 'package:regressify/core/regression_data.dart';
 class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    RegressionData _data = Provider.of<RegressionData>(context);
+    RegressionData data = Provider.of<RegressionData>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -16,7 +16,7 @@ class ResultCard extends StatelessWidget {
               children: [
                 Text('Linear Equation'.toUpperCase(), style: const TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 5),
-                Text('y = ${_data.a} + ${_data.b}x', textAlign: TextAlign.center),
+                SelectableText('y = ${data.a} + ${data.b}x', textAlign: TextAlign.center),
               ],
             ),
           ),
@@ -24,9 +24,9 @@ class ResultCard extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            ResultCardWidget(label: 'Intercept (a)', value: _data.a.toString()),
+            ResultCardWidget(label: 'Intercept (a)', value: data.a.toString()),
             const SizedBox(width: 10),
-            ResultCardWidget(label: 'Slope (b)', value: _data.b.toString()),
+            ResultCardWidget(label: 'Slope (b)', value: data.b.toString()),
           ],
         ),
       ],
@@ -49,7 +49,7 @@ class ResultCardWidget extends StatelessWidget {
           child: Column(children: [
             Text(label.toUpperCase(), style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 3.5),
-            Text(value.toString(), textAlign: TextAlign.center),
+            SelectableText(value.toString(), textAlign: TextAlign.center),
           ]),
         ),
       ),

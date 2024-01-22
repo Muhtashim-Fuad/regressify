@@ -23,6 +23,8 @@ class StyleData {
       ),
     ),
     appBarTheme: const AppBarTheme(
+      elevation: 3.5,
+      shadowColor: Colors.black,
       backgroundColor: Colors.deepOrangeAccent,
       foregroundColor: Colors.white,
     ),

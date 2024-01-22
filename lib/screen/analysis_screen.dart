@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:regressify/appbar_group.dart';
+import 'package:regressify/core/config_data.dart';
 import 'package:regressify/core/regression_calculator.dart';
 import 'package:regressify/style.dart';
 
@@ -10,9 +11,6 @@ class TableData extends StatelessWidget {
       required this.slopeValue,
       required this.coordinateData});
 
-  //DATA
-  final double errorMargin = 0.1;
-
   final List<CoordinateData> coordinateData;
   final double interceptValue;
   final double slopeValue;
@@ -22,14 +20,14 @@ class TableData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarGroup.infoAppBar(context, "Predicted Values"),
+      appBar: AppBarGroup.infoAppBar(context, "Regression Analysis"),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 17.5, vertical: 20),
         child: ListView(
           children: [
             Table(
               border:
-                  TableBorder.all(color: Color.fromARGB(255, 185, 185, 185)),
+                  TableBorder.all(color: const Color.fromARGB(255, 185, 185, 185)),
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               columnWidths: const {
                 0: FlexColumnWidth(5),
@@ -73,26 +71,26 @@ class TableData extends StatelessWidget {
                   TableRow(children: [
                     Container(
                         margin: StyleData.verticalMargin,
-                        child: Text(
+                        child: SelectableText(
                             'X: ${coordinateData[i].x}\nY: ${coordinateData[i].y}',
                             style: mainTextStyle,
                             textAlign: TextAlign.center)),
                     Container(
                       margin: StyleData.verticalMargin,
-                      child: Text(
+                      child: SelectableText(
                           'X: ${coordinateData[i].x}\nY: ${(interceptValue + slopeValue * coordinateData[i].x).toStringAsFixed(5)}',
                           style: mainTextStyle,
                           textAlign: TextAlign.center),
                     ),
                     Container(
                       margin: StyleData.verticalMargin,
-                      child: Text(
+                      child: SelectableText(
                           (coordinateData[i].y -
                                   (interceptValue +
                                       slopeValue * coordinateData[i].x))
                               .toStringAsFixed(3),
                           style: mainTextStyle?.copyWith(
-                            color: (coordinateData[i].y - (interceptValue + slopeValue * coordinateData[i].x)).abs() > errorMargin ?
+                            color: (coordinateData[i].y - (interceptValue + slopeValue * coordinateData[i].x)).abs() > ConfigData.errorMargin ?
                               const Color.fromARGB(255, 194, 13, 0) :
                               Colors.black,
                           ),
